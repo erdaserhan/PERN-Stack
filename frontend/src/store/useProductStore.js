@@ -10,6 +10,33 @@ export const useProductStore = create((set, get) => ({
     loading: false,
     error: null,
 
+    // form state
+    FormData: {
+        name: "",
+        price: "",      
+        image: "",
+    },
+
+    setFormData: (FormData) => set({ FormData }),
+    resetForm: () => set({ FormData: { name: "", price: "", image: "" } }),
+
+    addProduct: async (e) => {
+        e.preventDefault();
+        set({ loading: true });
+        try {
+            const { FormData } = get(); 
+            await axios.post(`${BASE_URL}/api/products`, FormData);
+            await get().fetchProducts();
+            get().resetForm();
+            toast.success("Product added successfully");
+        } catch (error) {
+            console.log('Error in addProduct function', error);
+            toast.error("Something went wrong.");
+        } finally {
+            set({ loading: false });
+        }
+    },
+
     fetchProducts: async () => {
         set({ loading: true });
         try {
