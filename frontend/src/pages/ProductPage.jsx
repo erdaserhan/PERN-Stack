@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useProductStore } from "../store/useProductStore"
 import { useEffect } from "react"
+import { ArrowLeft } from "lucide-react"
 
 function ProductPage() {
   const { 
@@ -35,9 +36,14 @@ function ProductPage() {
         </div>
       );
     }
-    
+
   return (
-    <div>ProductPage</div>
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <button onClick={() => navigate("/")} className="btn btn-ghost mb-8">
+        <ArrowLeft className="size-4 mr-2" />
+        Back to Products
+      </button>
+    </div>
   )
 }
 
