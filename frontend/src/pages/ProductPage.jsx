@@ -21,6 +21,13 @@ function ProductPage() {
       fetchProduct(id)
     }, [fetchProduct, id])
 
+    const handleDelete = async () => {
+      if (window.confirm("Are you sure you want to delete this product?")) {
+      await deleteProduct(id);  
+      navigate("/");
+    }
+    };
+
     if (loading) {
       return (
         <div className="flex justify-center items-center min-h-screen">
@@ -110,7 +117,7 @@ function ProductPage() {
 
               {/* FORM ACTIONS */}
               <div className="flex justify-between mt-8">
-                <button type="button" className="btn btn-error">
+                <button type="button" onClick={handleDelete} className="btn btn-error">
                   <Trash2Icon className="size-4 mr-2" />
                   Delete Product
                 </button>

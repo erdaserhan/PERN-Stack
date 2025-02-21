@@ -84,7 +84,7 @@ export const useProductStore = create((set, get) => ({
         }
     },
 
-    updateProduct: async (e) => {
+    updateProduct: async (id) => {
         set({ loading: true });
         try {
             const {formData} = get();
